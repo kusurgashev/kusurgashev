@@ -1,0 +1,15 @@
+#include "pch.h"
+#include <iostream>
+#include <string>
+using namespace std;
+string GetFoo1() {
+	
+	return "GetFoo1";
+}
+void Foo(string (*foo)()) {
+	cout << foo();
+}
+int main()
+{
+	Foo(GetFoo1);
+}
