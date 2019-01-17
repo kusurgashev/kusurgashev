@@ -59,6 +59,4 @@ int main()
 	pop_back(arr, size);
 
 	ShowArr(arr, size);
-
-	delete[] arr;
 }
