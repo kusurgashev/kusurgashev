@@ -1,0 +1,33 @@
+#include "pch.h"
+#include <iostream>
+using namespace std;
+
+class MyClass {
+private:
+	int x;
+public:
+	MyClass(int x){
+		this->x = x ;
+		cout << "Вызвался конструктор  " << this << endl;
+	}
+	MyClass(const MyClass &a) {
+		this->x = a.x;
+		cout << "Вызвался конструктор копирования  "<< this << endl;
+	}
+	void Print() {
+		cout << x  << endl;
+	}
+	~MyClass() {
+		cout << "Вызвался деструктор  " << this << endl;
+	}
+};
+
+int main()
+{
+	setlocale(LC_ALL, "ru");
+	MyClass a(1);
+	a.Print();
+	MyClass b(a);
+	b.Print();
+	
+}
