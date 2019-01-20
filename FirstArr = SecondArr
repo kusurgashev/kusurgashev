@@ -2,47 +2,68 @@
 #include <iostream>
 using namespace std;
 
-void FillArr(int* const arr, const int size) {
-	for (int i = 0; i < size; i++) {
-		arr[i] = rand() % 10;
-	}
-}
+class MyClass
+{
+private:
+	int *data;
+	int size;
+public:
 
-void ShowArr(int* const arr, const int size) {
-	for (int i = 0; i < size; i++) {
-		cout << arr[i] << ' ';
+	void Print() {
+		for (int i = 0; i < size; i++) {
+			cout << "\t" << data[i] << endl;
+		}
+		cout << endl;
 	}
-}
 
+	MyClass(int size) {
+		this->size = size;
+		this->data = new int [size];
+		for (int i = 0; i < size; i++) {
+			this->data[i] = i ;
+		}
+		cout << "Вызвался конструктор  " << this << endl;
+	}
+
+	MyClass(const MyClass &a) {
+		this->size = a.size;
+		this->data = new int [a.size];
+		for (int i = 0; i < a.size; i++) {
+			this->data[i] = a.data[i];
+		}
+		cout << "Вызвался конструктор копирования  " << this << endl;
+	}
+
+	MyClass & operator = (const MyClass &b) {
+
+		if (this->data != nullptr) {
+			delete[] data;
+		}
+
+		this->size = b.size;
+		this->data = new int[b.size];
+		for (int i = 0; i < b.size; i++) {
+			this->data[i] = b.data[i];
+		}
+		cout << "Вызвался оператор = "<< this << endl;
+		return *this;
+	}
+
+	~MyClass() {
+		cout << "Вызвался деструктор " << this << endl;
+		delete[] data;
+	}
+};
 
 int main()
 {
-	int size = 10;
-	int* firstArray = new int[size];
-	int* secondArray = new int[size];
-
-
-	FillArr(firstArray, size);
-	FillArr(secondArray, size);
-	ShowArr(firstArray, size);
-	cout << endl;
-	ShowArr(secondArray, size);
-	
-
-
-	FillArr(firstArray, size);
-	FillArr(secondArray, size);
-	delete[] firstArray;
-	firstArray = new int[size];
-	for (int i = 0; i < size; i++) {
-		firstArray[i] = secondArray[i];
-	}
-
-	cout << endl;
-	cout << "=============================================================" << endl;
-	ShowArr(firstArray, size);
-	cout << endl;
-	ShowArr(secondArray, size);
-	
-	delete[] secondArray;
+	setlocale(LC_ALL, "ru");
+	MyClass a(6);
+	a.Print();
+	MyClass b(a);
+	b.Print();
+	MyClass c(8);
+	c.Print();
+	c = a = b;
+	c.Print();
 }
