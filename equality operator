@@ -1,0 +1,48 @@
+#include "pch.h"
+#include <iostream>
+using namespace std;
+
+class MyClass
+{
+private:
+	int x;
+	int y;
+public:
+
+	MyClass(int x, int y) {
+		this->x = x;
+		this->y = y;
+	}
+
+	bool operator ==(const MyClass &other)
+	{
+		if (this->x == other.x & this->y == other.y)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	bool operator !=(const MyClass &other)
+	{
+		if (this->x != other.x & this->y != other.y)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+};
+
+int main()
+{
+	MyClass a(6,7);
+	MyClass b(6,7);
+	bool result = a != b;
+	cout << result;
+}
