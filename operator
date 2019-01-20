@@ -9,6 +9,14 @@ private:
 	int y;
 public:
 
+	void Print() {
+		cout << this->x << "\t" << this->y << endl;
+	}
+	MyClass() {
+		x = 0;
+		y = 0;
+	}
+
 	MyClass(int x, int y) {
 		this->x = x;
 		this->y = y;
@@ -37,6 +45,14 @@ public:
 			return false;
 		}
 	}
+
+	MyClass operator +(const MyClass &other)
+	{
+		MyClass temp;
+		temp.x = this->x + other.x;
+		temp.y = this->y + other.y;
+		return temp;
+	}
 };
 
 int main()
@@ -44,5 +60,7 @@ int main()
 	MyClass a(6,7);
 	MyClass b(6,7);
 	bool result = a != b;
+	MyClass c = a + b;
+	c.Print();
 	cout << result;
 }
