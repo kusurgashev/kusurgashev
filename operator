@@ -60,7 +60,5 @@ int main()
 	MyClass a(6,7);
 	MyClass b(6,7);
 	bool result = a != b;
-	MyClass c = a + b;
-	c.Print();
 	cout << result;
 }
