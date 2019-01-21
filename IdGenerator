@@ -1,0 +1,38 @@
+#include "pch.h"
+#include <iostream>
+using namespace std;
+
+class MyPoint
+{
+public:
+	MyPoint() {
+		id = ++Count;
+	}
+
+	static int GetCount() {
+		return Count;
+	}
+
+	void Print() {
+		cout << this->id << endl;
+	}
+
+
+private:
+	static int Count;
+	int a;
+	int b;
+	int id;
+};
+
+int MyPoint::Count = 0;
+
+
+int main()
+{
+	MyPoint a;
+	a.Print();
+	MyPoint b;
+	b.Print();
+	cout << MyPoint::GetCount() << endl;
+}
