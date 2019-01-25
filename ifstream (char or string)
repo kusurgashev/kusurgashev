@@ -1,0 +1,33 @@
+#include "pch.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main() {
+	
+	setlocale(LC_ALL, "ru");
+	
+	ifstream fin;
+	fin.open("myFile.txt");
+
+	if (!fin.is_open()) {
+		cout << "Файл не открыт" << endl;
+	}
+	else {
+		cout << "Файл открыт" << endl;
+		//char//
+		char ch;
+		while (fin.get(ch)) {
+			cout << ch;
+		}
+		//string//
+		string str;
+		while (!fin.eof()) {
+      str = " ";
+			fin >> str; // or // getline(fin, str);
+			cout << str << endl;
+		}
+	}
+	fin.close();
+}
