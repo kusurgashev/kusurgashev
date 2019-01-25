@@ -1,0 +1,58 @@
+#include "pch.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+class Point {
+public:
+	Point() {
+		x = y = 0;
+	}
+	Point(int x, int y) {
+		this->x = x;
+		this->y = y;
+	}
+	void Print() {
+		cout << this->x << " " << this->y << endl;
+	}
+private:
+	int x;
+	int y;
+};
+
+int main() {
+	
+	setlocale(LC_ALL, "ru");
+
+	Point point(1,5);
+  
+  // write
+	ofstream fout;
+	fout.open("myfile.txt", ofstream::app);
+
+	if (!fout.is_open()) {
+		cout << "ошибка" << endl;
+	}
+	else {
+		cout << "данные записаны" << endl;
+		fout.write((char*)&point, sizeof(point));
+	}
+	fout.close();
+
+  // read
+	ifstream fin;
+	fin.open("myFile.txt");
+	
+	if (!fin.is_open()) {
+		cout << "Файл не открыт" << endl;
+	}
+	else {
+		cout << "Файл открыт" << endl;
+		Point pnt;
+		while (fin.read((char*)&pnt, sizeof(Point))) {
+			pnt.Print();
+		}
+	}
+	fin.close();
+}
