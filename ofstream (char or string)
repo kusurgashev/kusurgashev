@@ -8,7 +8,7 @@ int main() {
 	
 	setlocale(LC_ALL, "ru");
 	
-	ifstream fin;
+	ofstream fin;
 	fin.open("myFile.txt");
 
 	if (!fin.is_open()) {
@@ -24,7 +24,7 @@ int main() {
 		//string//
 		string str;
 		while (!fin.eof()) {
-      str = " ";
+     			str = " ";
 			fin >> str; // or // getline(fin, str);
 			cout << str << endl;
 		}
