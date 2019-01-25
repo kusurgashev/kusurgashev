@@ -8,7 +8,7 @@ int main() {
 	
 	setlocale(LC_ALL, "ru");
 	
-	ofstream fin;
+	ifstream fin;
 	fin.open("myFile.txt");
 
 	if (!fin.is_open()) {
