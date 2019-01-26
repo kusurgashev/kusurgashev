@@ -1,0 +1,27 @@
+#include "pch.h"
+#include <iostream>
+#include <string>
+#include <ctime>
+using namespace std;
+
+int main()
+{
+	string alphabet = "abcdefghijklmnopqrstuvwxyz";
+	string pass = "";
+	string nass = "putin";
+	int counter = 0;
+	const int VALUE = nass.size();
+	srand(time(NULL));
+	while (pass != nass) {
+		for (int i = 0; i < nass.size(); i++) {
+			pass.push_back(alphabet[rand() % alphabet.size()]);
+		} 
+		cout << pass << " ";
+		if (pass == nass) {
+			break;
+		}
+		pass = "";
+		counter++;
+	}
+	cout << counter << endl;
+}
