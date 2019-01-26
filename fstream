@@ -1,0 +1,46 @@
+#include "pch.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <Windows.h>
+using namespace std;
+
+int main() {
+	
+	setlocale(LC_ALL, "ru");
+
+	fstream fs;
+	fs.open("myFile.txt", fstream::in | fstream::out | fstream::app);
+	if (!fs.is_open()) {
+		cout << "Ошибка открытия файла!" << endl;
+	}
+	else {
+		string str;
+		cout << "Файл открыт!" << endl;
+		cout << "Введите 1 для записи сообщения в файл:" << endl;
+		cout << "Введите 2 для считывания всех сообщений из файла:" << endl;
+		int a;
+		cin >> a;
+		switch (a) {
+		case 1:
+			cout << "Вы ввели 1" << endl;
+			SetConsoleCP(1251);
+			cin >> str;
+			fs << str << "\n";
+			SetConsoleCP(866);
+			break;
+		case 2:
+			cout << "Вы ввели 2" << endl;
+			while (!fs.eof()) {
+				str = "";
+				fs >> str;
+				cout << str << endl;
+			}
+			break;
+		default:
+			cout << "Вы ввели какую-то херню" << endl;
+			break;
+		}
+	}
+	fs.close();
+}
